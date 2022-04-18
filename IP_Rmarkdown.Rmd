@@ -1,0 +1,56 @@
+---
+title: "IP_Rmarkdown"
+author: "Youngsub Sin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## IP1
+
+```{r}
+library(rvest)
+
+url <- "https://argoshare.is.ed.ac.uk/healthyr_book/"
+web_page <- read_html(url)
+
+#title
+
+chapter_name <- web_page|>
+  html_elements(".chapter a")|>
+  html_text()
+
+df <- data.frame(chapter_name)
+df
+```
+
+## IP2
+
+```{r}
+library(rvest)
+
+url <- "https://argoshare.is.ed.ac.uk/healthyr_book/why-read-this-book.html"
+web_page <- read_html(url)
+
+#title
+
+head_name <- web_page|>
+  html_elements("h2")|>
+  html_text()
+
+
+
+body_contents <- web_page|>
+  html_elements("p")|>
+  html_text()
+
+
+```
+```{r}
+head_name
+body_contents
+
+```
